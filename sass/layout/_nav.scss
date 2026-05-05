@@ -36,6 +36,35 @@ nav {
   }
 }
 
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-left: auto;
+
+  @include breakpoint(mobile) {
+    display: none;
+  }
+
+  .nav-social-line {
+    width: 1px;
+    height: 1.25rem;
+    background: var(--accent);
+    margin-right: 0.5rem;
+  }
+
+  a {
+    color: var(--muted);
+    line-height: 0;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
 .nav-links {
   @include reset-list();
   display: flex;
