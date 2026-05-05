@@ -1,0 +1,18 @@
+.cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s, height 0.15s, opacity 0.15s;
+  mix-blend-mode: difference;
+
+  &.big {
+    width: 36px;
+    height: 36px;
+    opacity: 0.6;
+  }
+}

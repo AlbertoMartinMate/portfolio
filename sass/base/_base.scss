@@ -1,0 +1,52 @@
+@use '../abstracts' as *;
+
+:root {
+  --black:       #0A0A0A;
+  --off-black:   #111111;
+  --surface:     #161616;
+  --border:      #222222;
+  --muted:       #555555;
+  --text:        #E8E8E0;
+  --accent:      #C8FF00;
+  --accent-dim:  rgba(200, 255, 0, 0.12);
+  --accent-glow: rgba(200, 255, 0, 0.06);
+  --radius:      4px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $primary-font;
+  background: var(--black);
+  color: var(--text);
+  line-height: 1.6;
+  cursor: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+}
+
+// Section base padding
+section {
+  padding: 7rem 4rem;
+
+  @include breakpoint(desktop) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

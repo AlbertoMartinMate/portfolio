@@ -1,0 +1,36 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+
+  &-primary {
+    background: var(--accent);
+    color: var(--black);
+    border: 2px solid var(--accent);
+
+    &:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+  }
+
+  &-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+
+    &:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  }
+}

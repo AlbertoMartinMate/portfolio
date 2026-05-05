@@ -1,0 +1,61 @@
+@use 'variables' as *;
+
+@mixin breakpoint($bp) {
+  @if $bp == mobile {
+    @media (max-width: $bp-mobile) {
+      @content;
+    }
+  }
+  @if $bp == tablet {
+    @media (max-width: $bp-tablet) {
+      @content;
+    }
+  }
+  @if $bp == desktop {
+    @media (max-width: $bp-desktop) {
+      @content;
+    }
+  }
+  @if $bp == desktop-lg {
+    @media (min-width: $bp-desktop-lg) {
+      @content;
+    }
+  }
+}
+
+@mixin reset-list() {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin label-style() {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+}
