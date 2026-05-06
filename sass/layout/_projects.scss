@@ -156,3 +156,96 @@ h3.project-title {
     pointer-events: none;
   }
 }
+
+.project-card-favicon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+// ── FRONTEND CHALLENGES ──────────────────────────────────────
+
+.challenges-section {
+  margin-top: 5rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--border);
+}
+
+.challenges-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+
+  @include breakpoint(desktop) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.challenge-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    border-color: #333;
+    transform: translateY(-3px);
+
+    &::before { transform: scaleX(1); }
+  }
+}
+
+.challenge-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0;
+}
+
+.challenge-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: auto;
+
+  .project-link {
+    margin-top: 0;
+    font-size: 0.7rem;
+  }
+
+  .challenge-repo-link {
+    color: var(--muted);
+
+    &:hover { color: var(--accent); }
+  }
+}
