@@ -27,6 +27,10 @@
   .accent {
     color: var(--accent);
   }
+
+  @include breakpoint(mobile) {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
 }
 
 .contact-links {

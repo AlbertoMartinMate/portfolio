@@ -72,6 +72,12 @@ nav {
   }
 }
 
+.nav-email-item {
+  @include breakpoint(mobile) {
+    display: none;
+  }
+}
+
 .nav-links {
   @include reset-list();
   display: flex;
