@@ -27,6 +27,11 @@
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
+  @include breakpoint(mobile) {
+    padding-top: 6rem;
+    gap: 2rem;
+  }
 }
 
 .hero-content {
@@ -35,6 +40,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @include breakpoint(mobile) {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .hero-eyebrow {
@@ -54,6 +64,10 @@
     width: 2rem;
     height: 1px;
     background: var(--accent);
+  }
+
+  @include breakpoint(mobile) {
+    &::before { display: none; }
   }
 }
 
@@ -87,6 +101,51 @@ h1.hero-title {
   @include breakpoint(tablet) {
     order: -1;
   }
+
+  @include breakpoint(mobile) {
+    align-items: stretch;
+    justify-content: center;
+  }
+}
+
+// Social bar — solo visible en móvil, a la derecha de la foto
+.hero-social-bar {
+  display: none;
+
+  @include breakpoint(mobile) {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding-left: 0.6rem;
+    flex-shrink: 0;
+  }
+}
+
+.hero-social-line {
+  width: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.hero-social-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  a {
+    color: var(--muted);
+    line-height: 0;
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 0.2rem;
+
+    &:hover, &:active {
+      color: var(--accent);
+    }
+  }
 }
 
 .hero-am-bg {
@@ -111,6 +170,11 @@ h1.hero-title {
   position: relative;
   width: 70%;
   aspect-ratio: 1 / 1;
+
+  @include breakpoint(mobile) {
+    width: auto;
+    flex: 1;
+  }
   overflow: hidden;
   mask-image: radial-gradient(circle at 50% 52%,
     black 28%,
