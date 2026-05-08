@@ -101,25 +101,20 @@
     <h2 class="section-title">Skills &amp;<br />Tecnologías</h2>
 
     <div class="skills-grid">
-      <!-- Certificados (sustituye href="#" por la URL cuando la tengas) -->
-      <a href="#" class="skill-tag featured clickable" aria-label="Ver certificado Python">Python</a>
-      <a href="#" class="skill-tag featured clickable" aria-label="Ver certificado HTML/CSS">HTML / CSS</a>
-      <a href="#" class="skill-tag featured clickable" aria-label="Ver certificado Terminal/Bash">Terminal / Bash</a>
-      <a href="#" class="skill-tag featured clickable" aria-label="Ver certificado IA a Producción">IA a Producción</a>
-      <a href="#" class="skill-tag featured clickable" aria-label="Ver certificado SEO">SEO</a>
-      <!-- En curso -->
+      <a href="#" class="skill-tag featured clickable" data-certs="img/python_avanzado.pdf" aria-label="Ver certificado Python">Python</a>
+      <a href="#" class="skill-tag featured clickable" data-certs="img/html.pdf,img/css_experto.pdf" aria-label="Ver certificados HTML / CSS">HTML / CSS</a>
+      <a href="#" class="skill-tag featured clickable" data-certs="img/linux_terminal.pdf" aria-label="Ver certificado Terminal / Bash">Terminal / Bash</a>
+      <a href="#" class="skill-tag featured clickable" data-certs="img/git_git-hub.pdf" aria-label="Ver certificado Git / GitHub">Git / GitHub</a>
+      <a href="#" class="skill-tag featured clickable" data-pending aria-label="Certificado en camino">IA a Producción</a>
+      <a href="#" class="skill-tag featured clickable" data-pending aria-label="Certificado en camino">SEO</a>
       <div class="skill-tag featured in-progress">
         JavaScript<span class="skill-sub">· en curso</span>
       </div>
-      <!-- Featured sin cert -->
       <div class="skill-tag featured">Flask</div>
-      <!-- Resto -->
       <div class="skill-tag">PostgreSQL</div>
       <div class="skill-tag">SQLite</div>
       <div class="skill-tag">Jinja2</div>
       <div class="skill-tag">REST APIs</div>
-      <div class="skill-tag">Git</div>
-      <div class="skill-tag">GitHub</div>
       <div class="skill-tag">Render</div>
       <div class="skill-tag">GitHub Pages</div>
       <div class="skill-tag">Responsive Design</div>
@@ -330,6 +325,22 @@
     </div>
     <p>Madrid, España</p>
   </footer>
+
+
+  <!-- CERT MODAL -->
+  <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true">
+    <div class="cert-modal__backdrop"></div>
+    <div class="cert-modal__box">
+      <button class="cert-modal__close" aria-label="Cerrar">×</button>
+      <div class="cert-modal__title"></div>
+      <div class="cert-modal__viewer"></div>
+      <div class="cert-modal__nav">
+        <button class="cert-modal__prev" aria-label="Anterior">←</button>
+        <span class="cert-modal__counter"></span>
+        <button class="cert-modal__next" aria-label="Siguiente">→</button>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
