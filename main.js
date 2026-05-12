@@ -29,80 +29,108 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el))
 
-// ── CERT MODAL
-const modal       = document.getElementById('cert-modal')
-const modalTitle  = modal.querySelector('.cert-modal__title')
-const modalViewer = modal.querySelector('.cert-modal__viewer')
-const modalNav    = modal.querySelector('.cert-modal__nav')
-const modalCounter= modal.querySelector('.cert-modal__counter')
-const modalPrev   = modal.querySelector('.cert-modal__prev')
-const modalNext   = modal.querySelector('.cert-modal__next')
-
-let certs = []
-let current = 0
-
-const base = import.meta.env.BASE_URL
-
-function renderCert () {
-  const src = base + certs[current]
-  modalViewer.innerHTML = `
-    <iframe src="${src}" title="Certificado"></iframe>
-    <a class="cert-modal__open-link" href="${src}" target="_blank" rel="noopener">Abrir en nueva pestaña ↗</a>
-  `
-  modalCounter.textContent = `${current + 1} / ${certs.length}`
+// ── CERTS DATA
+const certsData = {
+  'Python': [
+    { titulo: 'Python Avanzado', institucion: 'MMT Academy', img: 'img/certs/cert-python-avanzado.png' }
+  ],
+  'HTML / CSS': [
+    { titulo: 'CSS Experto',  institucion: 'MMT Academy', img: 'img/certs/cert_css_experto.png' },
+    { titulo: 'HTML',         institucion: 'MMT Academy', img: 'img/certs/cert-html.png' }
+  ],
+  'Terminal/Bash': [
+    { titulo: 'Linux & Terminal', institucion: 'MMT Academy', img: 'img/certs/certr-linux_terminal.png' }
+  ],
+  'Git': [
+    { titulo: 'Git & GitHub', institucion: 'MMT Academy', img: 'img/certs/cert-git_git-hub.png' }
+  ],
+  'IA a Producción': [
+    { titulo: 'IA a Producción', institucion: 'MMT Academy', img: 'img/certs/cert-ia-produccion.png' }
+  ],
+  'SEO': [
+    { titulo: 'SEO', institucion: 'MMT Academy', img: 'img/certs/cert-seo.png' }
+  ]
 }
 
-function openModal (label, certList, pending) {
-  certs   = certList
-  current = 0
-  modalTitle.textContent = label
+// ── CERT EXPAND PANEL
+const expandPanel = document.getElementById('cert-expand')
+const certCards   = document.getElementById('cert-cards')
+let activeSkill   = null
 
-  if (pending) {
-    modalViewer.innerHTML = `
-      <div class="cert-modal__pending">
-        <span>⏳</span>
-        Certificado en camino…
+function openExpand (skillKey, triggerEl) {
+  const list = certsData[skillKey]
+  certCards.innerHTML = list.map(c => `
+    <div class="cert-card" data-img="${c.img}" role="button" tabindex="0" aria-label="Ver ${c.titulo}">
+      <img class="cert-card__thumb" src="${c.img}" alt="${c.titulo}" loading="lazy" />
+      <div class="cert-card__info">
+        <div class="cert-card__title">${c.titulo}</div>
+        <div class="cert-card__inst">${c.institucion}</div>
       </div>
-    `
-    modalNav.classList.add('hidden')
-  } else {
-    renderCert()
-    modalNav.classList.toggle('hidden', certs.length <= 1)
-  }
+    </div>
+  `).join('')
 
-  modal.classList.add('open')
-  document.body.style.overflow = 'hidden'
+  expandPanel.style.maxHeight = expandPanel.scrollHeight + certCards.scrollHeight + 'px'
+  expandPanel.setAttribute('aria-hidden', 'false')
+
+  bindCardEvents()
 }
 
-function closeModal () {
-  modal.classList.remove('open')
-  document.body.style.overflow = ''
-  setTimeout(() => { modalViewer.innerHTML = '' }, 250)
+function closeExpand () {
+  expandPanel.style.maxHeight = '0'
+  expandPanel.setAttribute('aria-hidden', 'true')
+  activeSkill = null
+}
+
+function bindCardEvents () {
+  expandPanel.querySelectorAll('.cert-card').forEach(card => {
+    const open = () => openLightbox(card.dataset.img)
+    card.addEventListener('click', open)
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open() })
+  })
 }
 
 document.querySelectorAll('.skill-tag.clickable').forEach(el => {
-  el.addEventListener('click', e => {
-    e.preventDefault()
-    const pending  = el.hasAttribute('data-pending')
-    const certAttr = el.dataset.certs ?? ''
-    const certList = certAttr ? certAttr.split(',') : []
-    openModal(el.textContent.trim(), certList, pending)
+  const key = el.dataset.skill
+  el.addEventListener('click', () => {
+    if (activeSkill === key) {
+      el.classList.remove('active')
+      el.setAttribute('aria-expanded', 'false')
+      closeExpand()
+      return
+    }
+    document.querySelectorAll('.skill-tag.clickable').forEach(t => {
+      t.classList.remove('active')
+      t.setAttribute('aria-expanded', 'false')
+    })
+    el.classList.add('active')
+    el.setAttribute('aria-expanded', 'true')
+    activeSkill = key
+    openExpand(key, el)
   })
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') el.click() })
 })
 
-modalPrev.addEventListener('click', () => {
-  current = (current - 1 + certs.length) % certs.length
-  renderCert()
-})
+// ── CERT LIGHTBOX
+const lightbox     = document.getElementById('cert-lightbox')
+const lightboxImg  = lightbox.querySelector('.cert-lightbox__img')
+const lightboxBtn  = lightbox.querySelector('.cert-lightbox__btn')
 
-modalNext.addEventListener('click', () => {
-  current = (current + 1) % certs.length
-  renderCert()
-})
+function openLightbox (imgSrc) {
+  lightboxImg.src = imgSrc
+  lightboxBtn.href = imgSrc
+  lightbox.classList.add('open')
+  lightbox.setAttribute('aria-hidden', 'false')
+  document.body.style.overflow = 'hidden'
+}
 
-modal.querySelector('.cert-modal__close').addEventListener('click', closeModal)
-modal.querySelector('.cert-modal__backdrop').addEventListener('click', closeModal)
+function closeLightbox () {
+  lightbox.classList.remove('open')
+  lightbox.setAttribute('aria-hidden', 'true')
+  document.body.style.overflow = ''
+}
 
+lightbox.querySelector('.cert-lightbox__close').addEventListener('click', closeLightbox)
+lightbox.querySelector('.cert-lightbox__backdrop').addEventListener('click', closeLightbox)
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modal.classList.contains('open')) closeModal()
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox()
 })

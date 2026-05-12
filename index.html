@@ -101,12 +101,12 @@
     <h2 class="section-title">Skills &amp;<br />Tecnologías</h2>
 
     <div class="skills-grid">
-      <a href="#" class="skill-tag featured clickable" data-certs="img/python_avanzado.pdf" aria-label="Ver certificado Python">Python</a>
-      <a href="#" class="skill-tag featured clickable" data-certs="img/html.pdf,img/css_experto.pdf" aria-label="Ver certificados HTML / CSS">HTML / CSS</a>
-      <a href="#" class="skill-tag featured clickable" data-certs="img/linux_terminal.pdf" aria-label="Ver certificado Terminal / Bash">Terminal / Bash</a>
-      <a href="#" class="skill-tag featured clickable" data-certs="img/git_git-hub.pdf" aria-label="Ver certificado Git / GitHub">Git / GitHub</a>
-      <a href="#" class="skill-tag featured clickable" data-certs="img/Certificado_ia_produccion.pdf" aria-label="Ver certificado IA a Producción">IA a Producción</a>
-      <a href="#" class="skill-tag featured clickable" data-certs="img/CERTIFICADO seo.pdf" aria-label="Ver certificado SEO">SEO</a>
+      <div class="skill-tag featured clickable" data-skill="Python" role="button" tabindex="0" aria-expanded="false">Python</div>
+      <div class="skill-tag featured clickable" data-skill="HTML / CSS" role="button" tabindex="0" aria-expanded="false">HTML / CSS</div>
+      <div class="skill-tag featured clickable" data-skill="Terminal/Bash" role="button" tabindex="0" aria-expanded="false">Terminal / Bash</div>
+      <div class="skill-tag featured clickable" data-skill="Git" role="button" tabindex="0" aria-expanded="false">Git / GitHub</div>
+      <div class="skill-tag featured clickable" data-skill="IA a Producción" role="button" tabindex="0" aria-expanded="false">IA a Producción</div>
+      <div class="skill-tag featured clickable" data-skill="SEO" role="button" tabindex="0" aria-expanded="false">SEO</div>
       <div class="skill-tag featured in-progress">
         JavaScript<span class="skill-sub">· en curso</span>
       </div>
@@ -119,6 +119,12 @@
       <div class="skill-tag">GitHub Pages</div>
       <div class="skill-tag">Responsive Design</div>
       <div class="skill-tag">UI / UX</div>
+    </div>
+
+    <div class="cert-expand" id="cert-expand" aria-hidden="true">
+      <div class="cert-expand__inner">
+        <div class="cert-cards" id="cert-cards"></div>
+      </div>
     </div>
   </section>
 
@@ -327,18 +333,13 @@
   </footer>
 
 
-  <!-- CERT MODAL -->
-  <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true">
-    <div class="cert-modal__backdrop"></div>
-    <div class="cert-modal__box">
-      <button class="cert-modal__close" aria-label="Cerrar">×</button>
-      <div class="cert-modal__title"></div>
-      <div class="cert-modal__viewer"></div>
-      <div class="cert-modal__nav">
-        <button class="cert-modal__prev" aria-label="Anterior">←</button>
-        <span class="cert-modal__counter"></span>
-        <button class="cert-modal__next" aria-label="Siguiente">→</button>
-      </div>
+  <!-- CERT LIGHTBOX -->
+  <div id="cert-lightbox" class="cert-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="cert-lightbox__backdrop"></div>
+    <div class="cert-lightbox__box">
+      <button class="cert-lightbox__close" aria-label="Cerrar">×</button>
+      <img class="cert-lightbox__img" src="" alt="Certificado" />
+      <a class="cert-lightbox__btn" href="" target="_blank" rel="noopener">Ver certificado ↗</a>
     </div>
   </div>
 
