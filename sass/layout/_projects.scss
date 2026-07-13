@@ -118,6 +118,36 @@ h3.project-title {
   margin-bottom: 1.5rem;
 }
 
+.project-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+
+  .project-badge {
+    margin-bottom: 0;
+  }
+}
+
+.project-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: auto;
+
+  .project-link {
+    margin-top: 0;
+  }
+
+  .project-link-repo {
+    color: var(--muted);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
 .tech-pill {
   padding: 0.2rem 0.6rem;
   background: var(--off-black);
